@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxwell Boateng — Political Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2A33;
+    --ink-soft:#3B4A54;
+    --paper:#EFEDE4;
+    --paper-raised:#F7F5EE;
+    --oxblood:#7C2D3B;
+    --teal:#3E6259;
+    --ochre:#B98B3E;
+    --line:#CBC6B6;
+    --line-soft:#DAD6C8;
+    --max-w:920px;
+    --sidebar-w:260px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+
+  a{color:var(--oxblood); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.03em;
+  }
+
+  /* ---------- Layout shell ---------- */
+  .shell{
+    display:flex;
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:var(--sidebar-w);
+    flex-shrink:0;
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:48px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    border-right:1px solid var(--line);
+  }
+
+  .brand .initials{
+    width:56px; height:56px;
+    border:1.5px solid var(--ink);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:18px;
+    background:var(--paper-raised);
+  }
+
+  .brand h1{
+    font-size:1.35rem;
+    line-height:1.25;
+    margin-bottom:6px;
+  }
+
+  .brand .role{
+    font-size:.82rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  .brand .tag{
+    display:inline-block;
+    margin-top:14px;
+    font-size:.68rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--teal);
+    border:1px solid var(--teal);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+
+  nav.sidenav{
+    margin-top:44px;
+  }
+  nav.sidenav ul{
+    list-style:none; margin:0; padding:0;
+  }
+  nav.sidenav li{margin-bottom:2px;}
+  nav.sidenav a{
+    display:block;
+    color:var(--ink-soft);
+    font-size:.92rem;
+    padding:7px 0;
+    border-left:2px solid transparent;
+    padding-left:12px;
+    margin-left:-13px;
+    transition:border-color .15s, color .15s;
+  }
+  nav.sidenav a:hover, nav.sidenav a.active{
+    color:var(--ink);
+    border-left-color:var(--oxblood);
+    text-decoration:none;
+  }
+
+  .sidebar-foot{
+    font-size:.78rem;
+    color:var(--ink-soft);
+  }
+  .sidebar-foot .links a{
+    display:inline-block;
+    margin-right:12px;
+    color:var(--ink-soft);
+  }
+  .sidebar-foot .links a:hover{color:var(--oxblood);}
+
+  /* Mobile top bar */
+  .topbar{display:none;}
+
+  /* ---------- Main ---------- */
+  main{
+    flex:1;
+    min-width:0;
+    padding:64px 56px 100px;
+  }
+  .section{
+    max-width:var(--max-w);
+    margin:0 auto 108px;
+    scroll-margin-top:32px;
+  }
+  .section:first-of-type{margin-top:0;}
+
+  .eyebrow{
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--teal);
+    margin-bottom:10px;
+    display:block;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+    margin-bottom:120px;
+  }
+  .hero h2{
+    font-size:2.5rem;
+    line-height:1.15;
+    letter-spacing:-.01em;
+  }
+  .hero h2 em{
+    font-style:italic;
+    color:var(--oxblood);
+  }
+  .hero p.lede{
+    margin-top:20px;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero .cta-row{
+    margin-top:28px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.8rem;
+    letter-spacing:.03em;
+    padding:11px 18px;
+    border-radius:2px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    background:transparent;
+    cursor:pointer;
+    display:inline-block;
+    transition:background .15s, color .15s;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+  .btn.primary{background:var(--oxblood); border-color:var(--oxblood); color:var(--paper-raised);}
+  .btn.primary:hover{background:#621f2b;}
+
+  .hero-viz{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:22px 20px 16px;
+  }
+  .hero-viz .cap{
+    font-size:.68rem;
+    color:var(--ink-soft);
+    margin-top:10px;
+    line-height:1.5;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:48px;
+  }
+  .about-grid p{margin:0 0 16px;}
+  .interests{
+    border-left:1px solid var(--line);
+    padding-left:28px;
+  }
+  .interests h3{
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .interests ul{
+    list-style:none; margin:0; padding:0;
+  }
+  .interests li{
+    font-size:.94rem;
+    padding:9px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .interests li:first-child{border-top:none;}
+
+  /* ---------- Publications ---------- */
+  .pub-entry{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:20px;
+    align-items:start;
+  }
+  .pub-entry:last-child{border-bottom:1px solid var(--line);}
+
+  .pub-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.18rem;
+    line-height:1.35;
+    margin-bottom:8px;
+  }
+  .pub-meta{
+    font-size:.85rem;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .pub-abstract{
+    font-size:.94rem;
+    color:var(--ink-soft);
+    max-width:64ch;
+  }
+
+  .stamp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.66rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    border:1.5px solid currentColor;
+    border-radius:2px;
+    padding:5px 9px;
+    display:inline-block;
+    transform:rotate(-2.5deg);
+    white-space:nowrap;
+    justify-self:end;
+  }
+  .stamp.review{color:var(--oxblood);}
+  .stamp.working{color:var(--teal);}
+  .stamp.rr{color:var(--ochre);}
+  .stamp.published{color:var(--ink-soft);}
+
+  .pub-group-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin:44px 0 4px;
+  }
+  .pub-group-label:first-child{margin-top:28px;}
+
+  /* ---------- Teaching ---------- */
+  .teach-entry{
+    display:flex;
+    gap:24px;
+    padding:20px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .teach-entry:first-child{border-top:none;}
+  .teach-term{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem;
+    color:var(--ink-soft);
+    width:120px;
+    flex-shrink:0;
+    padding-top:3px;
+  }
+  .teach-body h3{
+    font-size:1.02rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .teach-body p{
+    margin:0;
+    font-size:.92rem;
+    color:var(--ink-soft);
+  }
+  .edit-note{
+    margin-top:24px;
+    font-size:.82rem;
+    color:var(--ink-soft);
+    font-style:italic;
+    border-left:2px solid var(--ochre);
+    padding-left:12px;
+  }
+
+  /* ---------- CV ---------- */
+  .cv-box{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:36px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .cv-box p{margin:6px 0 0; color:var(--ink-soft); font-size:.92rem;}
+
+  /* ---------- Contact ---------- */
+  .contact-row{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .contact-item .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.68rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:6px;
+  }
+  .contact-item a{font-size:1rem;}
+
+  footer{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding-top:32px;
+    border-top:1px solid var(--line-soft);
+    font-size:.78rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .shell{display:block;}
+    .sidebar{display:none;}
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 24px;
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0;
+      background:var(--paper);
+      z-index:10;
+    }
+    .topbar .brand-mini{
+      font-family:'Fraunces', serif;
+      font-weight:600;
+      font-size:1.05rem;
+    }
+    .topbar select{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.78rem;
+      background:var(--paper-raised);
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:2px;
+      color:var(--ink);
+    }
+    main{padding:40px 24px 80px;}
+    .hero{grid-template-columns:1fr; gap:32px;}
+    .hero h2{font-size:1.9rem;}
+    .about-grid{grid-template-columns:1fr; gap:32px;}
+    .interests{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:24px;}
+    .pub-entry{grid-template-columns:1fr;}
+    .stamp{justify-self:start;}
+    .cv-box{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand-mini">Maxwell Boateng</span>
+  <select onchange="if(this.value) window.location.hash=this.value;" aria-label="Jump to section">
+    <option value="">Menu</option>
+    <option value="about">About</option>
+    <option value="research">Research</option>
+    <option value="teaching">Teaching</option>
+    <option value="cv">CV</option>
+    <option value="contact">Contact</option>
+  </select>
+</div>
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="initials">MB</div>
+        <h1>Maxwell Boateng</h1>
+        <div class="role">PhD Candidate &amp; Graduate Teaching Assistant<br>Department of Political Science<br>University of Wisconsin–Milwaukee</div>
+        <span class="tag">Comparative Politics</span>
+      </div>
+
+      <nav class="sidenav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research &amp; Publications</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#cv">CV</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="sidebar-foot">
+      <div class="links">
+        <a href="mailto:boaten36@uwm.edu">Email</a>
+        <a href="https://www.linkedin.com/in/maxwell-boateng/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.researchgate.net/profile/Maxwell-Boateng-3/publications" target="_blank" rel="noopener">ResearchGate</a>
+        <a href="https://orcid.org/0009-0003-6431-624X" target="_blank" rel="noopener">ORCID</a>
+      </div>
+      <div style="margin-top:10px;">Milwaukee, WI</div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- HERO / ABOUT -->
+    <section class="section" id="about">
+      <div class="hero">
+        <div class="reveal">
+          <h2>Studying how <em>democracy</em> holds up under pressure — one dataset at a time.</h2>
+          <p class="lede">I'm a PhD student in Political Science, working at the intersection of comparative democratization, party politics, and African political systems. My research leans on large-N cross-national data to ask questions that are easy to state and hard to answer cleanly.</p>
+          <div class="cta-row">
+            <a href="#research" class="btn primary">View research</a>
+            <a href="#cv" class="btn">Download CV</a>
+          </div>
+        </div>
+
+        <div class="hero-viz reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 180" width="100%" style="display:block;">
+            <line x1="0" y1="150" x2="320" y2="150" stroke="var(--line)" stroke-width="1"/>
+            <line x1="0" y1="100" x2="320" y2="100" stroke="var(--line-soft)" stroke-width="1"/>
+            <line x1="0" y1="50" x2="320" y2="50" stroke="var(--line-soft)" stroke-width="1"/>
+            <polyline points="0,140 30,132 60,120 90,125 120,100 150,95 180,70 210,78 240,55 270,48 300,40 320,36"
+              fill="none" stroke="var(--oxblood)" stroke-width="2"/>
+            <g fill="var(--teal)">
+              <circle cx="0" cy="140" r="2.5"/><circle cx="30" cy="132" r="2.5"/>
+              <circle cx="60" cy="120" r="2.5"/><circle cx="90" cy="125" r="2.5"/>
+              <circle cx="120" cy="100" r="2.5"/><circle cx="150" cy="95" r="2.5"/>
+              <circle cx="180" cy="70" r="2.5"/><circle cx="210" cy="78" r="2.5"/>
+              <circle cx="240" cy="55" r="2.5"/><circle cx="270" cy="48" r="2.5"/>
+              <circle cx="300" cy="40" r="2.5"/><circle cx="320" cy="36" r="2.5"/>
+            </g>
+          </svg>
+          <div class="cap mono">FIG. 01 — Illustrative polyarchy trend, N ≈ 115 democracies, V-Dem / V-Party series</div>
+        </div>
+      </div>
+
+      <div class="about-grid reveal">
+        <div>
+          <p>I hold a BA in Political Science (Economics minor) from the University of Education, Winneba, Ghana, and an MA in Political Science from Ohio University, where I graduated with a 3.958 GPA. I began my PhD in the Department of Political Science at UWM in Fall 2025, and expect to complete the program in 2031.</p>
+          <p>My work combines quantitative methods — panel models, fixed-effects estimation, power analysis in R and SPSS — with substantive questions about how democratic institutions function, or fail to, across very different political contexts. Before returning to political science research full-time, I worked as a Field Organizer for the Democratic Party of Wisconsin, running grassroots voter-contact programs across the state.</p>
+          <p>Much of my current research examines candidate selection, party factionalism, and rural political incorporation across Sub-Saharan Africa and beyond, using data from V-Dem, V-Party, and the Demographic and Health Surveys (DHS). I'm Ghanaian, and I speak English and Twi.</p>
+        </div>
+        <div class="interests">
+          <h3>Research Interests</h3>
+          <ul>
+            <li>Democratization &amp; democratic backsliding</li>
+            <li>Comparative party systems</li>
+            <li>African politics &amp; governance</li>
+            <li>Candidate selection &amp; primaries</li>
+            <li>Spatial political behavior</li>
+            <li>Migration policy &amp; political economy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH / PUBLICATIONS -->
+    <section class="section" id="research">
+      <span class="eyebrow reveal">Research &amp; Publications</span>
+      <h2 class="reveal" style="font-size:1.9rem; margin-bottom:8px;">Selected work</h2>
+      <p class="reveal" style="color:var(--ink-soft); max-width:60ch; margin-top:10px;">Manuscripts currently in the pipeline, alongside published work. Status is tracked as it moves — a habit borrowed from fieldwork, applied to the desk.</p>
+
+      <div class="reveal" style="margin-top:8px;">
+
+        <div class="pub-group-label">Under Review</div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Do Primaries Pay? Candidate Selection Methods and Electoral Performance Across Competitive Democracies</div>
+            <div class="pub-meta">Submitted to <em>Political Studies Review</em> · 2026</div>
+            <div class="pub-abstract">A large-N comparative study of primary-style candidate selection across roughly 115 democracies using V-Party and V-Dem data. Once fixed effects are introduced, the expected "primary bonus" in electoral performance largely disappears — a null result that speaks to ongoing debates about intra-party democracy and its electoral payoff.</div>
+          </div>
+          <span class="stamp review">Under Review</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Constituency Interests, Ideology, and Party in the House Voting on the United States–Mexico–Canada Agreement (USMCA)</div>
+            <div class="pub-meta">Submitted to <em>American Politics Research</em> · 2026</div>
+            <div class="pub-abstract">An analysis of how constituency interest, ideology, and party pressures shaped House roll-call voting on USMCA.</div>
+          </div>
+          <span class="stamp review">Under Review</span>
+        </div>
+
+        <div class="pub-group-label">Work in Progress</div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Reaching the Rural Periphery: Democracy, Policy Transmission, and Substantive Democratic Reach in Sub-Saharan Africa</div>
+            <div class="pub-meta">with Thomas Prehi Botchway &amp; Patrick Kwame Adu · Targeting <em>Democratization</em> · 2026</div>
+            <div class="pub-abstract">A large-N study using Demographic and Health Survey data to examine whether democratic institutions translate into welfare gains for rural populations across Sub-Saharan Africa, and where that translation breaks down.</div>
+          </div>
+          <span class="stamp working">Working Paper</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">The Shanghai Cooperation Organization (SCO): Shifting the Balance of Power in the 21st Century</div>
+            <div class="pub-meta">with Thomas Prehi Botchway &amp; Patrick Kwame Adu · Submitted to <em>Asian Social Science</em> · 2025</div>
+            <div class="pub-abstract">An examination of the SCO's growing role in reshaping geopolitical power balances in the 21st century.</div>
+          </div>
+          <span class="stamp working">Working Paper</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Party System Fragmentation, Electoral Volatility, and Political Instability in Francophone West Africa: A Scoping Review</div>
+            <div class="pub-meta">Registered protocol, OSF · July 2026 · <a href="https://doi.org/10.17605/OSF.IO/HN8BV" target="_blank" rel="noopener">doi.org/10.17605/OSF.IO/HN8BV</a></div>
+            <div class="pub-abstract">A scoping review protocol examining links between party system fragmentation, electoral volatility, and political instability across Francophone West Africa.</div>
+          </div>
+          <span class="stamp working">Protocol Registered</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Engaging the Dragon: Interpreting China's Role in West Africa through Optimist, Skeptic, and Pessimist Lenses</div>
+            <div class="pub-meta">with Patrick Kwame Adu · In preparation for the <em>African Journal of Governance and Development</em></div>
+            <div class="pub-abstract">A framework for interpreting China's engagement in West Africa through three competing analytical lenses.</div>
+          </div>
+          <span class="stamp working">In Preparation</span>
+        </div>
+
+        <div class="pub-group-label">Published</div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Dynamics of Factionalism in Ghana's New Patriotic Party</div>
+            <div class="pub-meta"><em>International Journal of Political Science and Governance</em>, 7(4), 175–183 · 2025 · <a href="https://doi.org/10.33545/26646021.2025.v7.i4c.496" target="_blank" rel="noopener">DOI</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">The Geography of Decision-Making in Voters, Politicians, and Spatial Dynamics</div>
+            <div class="pub-meta">with Prince Kyekyeku Boateng · <em>International Journal of Political Science and Governance</em>, 7(4), 201–212 · 2025 · <a href="https://doi.org/10.33545/26646021.2025.v7.i4c.499" target="_blank" rel="noopener">DOI</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Zimbabwe's Democratization: The Consummation of Robert Mugabe's 37-Year Reign</div>
+            <div class="pub-meta">with Prince Kyekyeku Boateng · in <em>Recent Trends in Humanities and Social Sciences</em>, Vol. 18, pp. 63–74, AkiNik Publications · 2025 · <a href="https://doi.org/10.22271/ed.book.3210" target="_blank" rel="noopener">DOI</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">The Migration Chessboard in Turkey: Analyzing Its Weaponization as a Transit Country and Its Strategies in Global Mobility</div>
+            <div class="pub-meta">with J. Akoeda · in <em>Global Encyclopedia of Public Administration, Public Policy, and Governance</em>, Springer Nature · 2025 · <a href="https://doi.org/10.1007/978-3-319-31816-5_4438-1" target="_blank" rel="noopener">DOI</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Balancing Protectionism and Globalization</div>
+            <div class="pub-meta">with T. P. Botchway &amp; P. K. Adu · in <em>Global Encyclopedia of Public Administration, Public Policy, and Governance</em>, Springer, Cham · 2026 · <a href="https://doi.org/10.1007/978-3-319-31816-5_4483-1" target="_blank" rel="noopener">DOI</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+        <div class="pub-entry">
+          <div>
+            <div class="pub-title">Broken Shields and Silent Allies: How National Interest Is Undermining the United Nations and Multilateralism</div>
+            <div class="pub-meta">with P. K. Adu · <em>International Journal of Progressive Sciences and Technologies</em>, 50(1), 693–711 · 2025 · <a href="https://ijpsat.org/index.php/ijpsat/article/view/7179/0" target="_blank" rel="noopener">Link</a></div>
+          </div>
+          <span class="stamp published">Published</span>
+        </div>
+
+      </div>
+
+      <div class="reveal" style="margin-top:56px;">
+        <h3 style="font-size:1.05rem; margin-bottom:14px;">Selected Invited Presentations</h3>
+        <div class="teach-entry" style="border-top:1px solid var(--line-soft); padding-top:16px;">
+          <div class="teach-term mono">Mar 2025</div>
+          <div class="teach-body">
+            <p><strong>The Geography of Decision-Making in Voters, Politicians, and Spatial Dynamics</strong> — National Council for Black Studies, 49th Annual Conference.</p>
+          </div>
+        </div>
+        <div class="teach-entry">
+          <div class="teach-term mono">2025</div>
+          <div class="teach-body">
+            <p><strong>Immigration and Law Enforcement</strong> — Feature Presenter, Wisconsin Democrats, Milwaukee.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section class="section" id="teaching">
+      <span class="eyebrow reveal">Teaching</span>
+      <h2 class="reveal" style="font-size:1.9rem;">Teaching experience</h2>
+
+      <div class="reveal" style="margin-top:24px;">
+        <div class="teach-entry">
+          <div class="teach-term mono">Spring 2026</div>
+          <div class="teach-body">
+            <h3>Graduate Teaching Assistant — International Political Economy</h3>
+            <p>Department of Political Science, University of Wisconsin–Milwaukee. Grading, feedback on written work, and student support across lecture and discussion components.</p>
+          </div>
+        </div>
+        <div class="teach-entry">
+          <div class="teach-term mono">Fall 2025</div>
+          <div class="teach-body">
+            <h3>Graduate Teaching Assistant — International Relations &amp; International Law</h3>
+            <p>Department of Political Science, University of Wisconsin–Milwaukee. Evaluated assignments and quizzes, and provided written feedback on analytical and writing skills in the context of international relations and law.</p>
+          </div>
+        </div>
+        <div class="teach-entry">
+          <div class="teach-term mono">2023 – 2024</div>
+          <div class="teach-body">
+            <h3>Graduate Assistant</h3>
+            <p>Department of Political Science, Ohio University. Research support, literature review, and study group leadership.</p>
+          </div>
+        </div>
+        <div class="teach-entry">
+          <div class="teach-term mono">2020 – 2021</div>
+          <div class="teach-body">
+            <h3>Teaching &amp; Administrative Assistant</h3>
+            <p>Department of Political Science Education, University of Education, Winneba. Tutorials for 60+ students in Politics of International Economic Relations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section class="section" id="cv">
+      <span class="eyebrow reveal">Curriculum Vitae</span>
+      <div class="cv-box reveal">
+        <div>
+          <h3 style="font-size:1.1rem;">Full CV</h3>
+          <p>Publications, presentations, teaching, and service — one PDF.</p>
+        </div>
+        <a href="Maxwell_Boateng_Curriculum_Vitae.pdf" class="btn primary" download>Download PDF</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" style="margin-bottom:60px;">
+      <span class="eyebrow reveal">Get in touch</span>
+      <h2 class="reveal" style="font-size:1.9rem; margin-bottom:20px;">Contact</h2>
+      <div class="contact-row reveal">
+        <div class="contact-item">
+          <span class="label">Email</span>
+          <a href="mailto:boaten36@uwm.edu">boaten36@uwm.edu</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">Department</span>
+          <span>Political Science, UWM</span>
+        </div>
+        <div class="contact-item">
+          <span class="label">Location</span>
+          <span>Milwaukee, Wisconsin</span>
+        </div>
+        <div class="contact-item">
+          <span class="label">Profiles</span>
+          <span><a href="https://www.linkedin.com/in/maxwell-boateng/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.researchgate.net/profile/Maxwell-Boateng-3/publications" target="_blank" rel="noopener">ResearchGate</a> · <a href="https://orcid.org/0009-0003-6431-624X" target="_blank" rel="noopener">ORCID</a></span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Maxwell Boateng. Built with care, one dataset at a time.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll-reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12});
+    revealEls.forEach(el=>io.observe(el));
+  } else {
+    revealEls.forEach(el=>el.classList.add('in'));
+  }
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('main .section[id]');
+  const navLinks = document.querySelectorAll('.sidenav a');
+  if ('IntersectionObserver' in window && sections.length) {
+    const navIo = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(l=>l.classList.remove('active'));
+          const active = document.querySelector('.sidenav a[href="#'+entry.target.id+'"]');
+          if(active) active.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-40% 0px -50% 0px'});
+    sections.forEach(s=>navIo.observe(s));
+  }
+</script>
+
+</body>
+</html>
