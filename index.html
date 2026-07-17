@@ -219,6 +219,20 @@
   .btn.primary{background:var(--oxblood); border-color:var(--oxblood); color:var(--paper-raised);}
   .btn.primary:hover{background:#621f2b;}
 
+  .hero-photo{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    aspect-ratio: 1000 / 990;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+  }
+
   .hero-viz{
     background:var(--paper-raised);
     border:1px solid var(--line);
@@ -503,23 +517,8 @@
           </div>
         </div>
 
-        <div class="hero-viz reveal" aria-hidden="true">
-          <svg viewBox="0 0 320 180" width="100%" style="display:block;">
-            <line x1="0" y1="150" x2="320" y2="150" stroke="var(--line)" stroke-width="1"/>
-            <line x1="0" y1="100" x2="320" y2="100" stroke="var(--line-soft)" stroke-width="1"/>
-            <line x1="0" y1="50" x2="320" y2="50" stroke="var(--line-soft)" stroke-width="1"/>
-            <polyline points="0,140 30,132 60,120 90,125 120,100 150,95 180,70 210,78 240,55 270,48 300,40 320,36"
-              fill="none" stroke="var(--oxblood)" stroke-width="2"/>
-            <g fill="var(--teal)">
-              <circle cx="0" cy="140" r="2.5"/><circle cx="30" cy="132" r="2.5"/>
-              <circle cx="60" cy="120" r="2.5"/><circle cx="90" cy="125" r="2.5"/>
-              <circle cx="120" cy="100" r="2.5"/><circle cx="150" cy="95" r="2.5"/>
-              <circle cx="180" cy="70" r="2.5"/><circle cx="210" cy="78" r="2.5"/>
-              <circle cx="240" cy="55" r="2.5"/><circle cx="270" cy="48" r="2.5"/>
-              <circle cx="300" cy="40" r="2.5"/><circle cx="320" cy="36" r="2.5"/>
-            </g>
-          </svg>
-          <div class="cap mono">FIG. 01 — Illustrative polyarchy trend, N ≈ 115 democracies, V-Dem / V-Party series</div>
+        <div class="hero-photo reveal">
+          <img src="maxwell-photo.jpg" alt="Portrait of Maxwell Boateng" width="1000" height="990">
         </div>
       </div>
 
@@ -548,6 +547,25 @@
       <span class="eyebrow reveal">Research &amp; Publications</span>
       <h2 class="reveal" style="font-size:1.9rem; margin-bottom:8px;">Selected work</h2>
       <p class="reveal" style="color:var(--ink-soft); max-width:60ch; margin-top:10px;">Manuscripts currently in the pipeline, alongside published work. Status is tracked as it moves — a habit borrowed from fieldwork, applied to the desk.</p>
+
+      <div class="hero-viz reveal" aria-hidden="true" style="max-width:420px; margin-top:24px;">
+        <svg viewBox="0 0 320 180" width="100%" style="display:block;">
+          <line x1="0" y1="150" x2="320" y2="150" stroke="var(--line)" stroke-width="1"/>
+          <line x1="0" y1="100" x2="320" y2="100" stroke="var(--line-soft)" stroke-width="1"/>
+          <line x1="0" y1="50" x2="320" y2="50" stroke="var(--line-soft)" stroke-width="1"/>
+          <polyline points="0,140 30,132 60,120 90,125 120,100 150,95 180,70 210,78 240,55 270,48 300,40 320,36"
+            fill="none" stroke="var(--oxblood)" stroke-width="2"/>
+          <g fill="var(--teal)">
+            <circle cx="0" cy="140" r="2.5"/><circle cx="30" cy="132" r="2.5"/>
+            <circle cx="60" cy="120" r="2.5"/><circle cx="90" cy="125" r="2.5"/>
+            <circle cx="120" cy="100" r="2.5"/><circle cx="150" cy="95" r="2.5"/>
+            <circle cx="180" cy="70" r="2.5"/><circle cx="210" cy="78" r="2.5"/>
+            <circle cx="240" cy="55" r="2.5"/><circle cx="270" cy="48" r="2.5"/>
+            <circle cx="300" cy="40" r="2.5"/><circle cx="320" cy="36" r="2.5"/>
+          </g>
+        </svg>
+        <div class="cap mono">FIG. 01 — Illustrative polyarchy trend, N ≈ 115 democracies, V-Dem / V-Party series</div>
+      </div>
 
       <div class="reveal" style="margin-top:8px;">
 
